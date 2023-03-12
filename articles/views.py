@@ -1,6 +1,5 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from django.db.models import Q
 from django.shortcuts import render, redirect
 from .forms import ArticleForm
 from .models import Article
@@ -16,9 +15,7 @@ def article_search_view(request):
     # Converting from Object to Query set.
     qs = Article.objects.all()
     if query is not None:
-        lookups = Q(title__icontains=query) | Q(content__icontains=query)
-        qs = Article.objects.filter(lookups)
-        # qs = Article.objects.search(query) # This is a way to omit the previous two lines.
+        qs = Article.objects.search(query) # This is a way to omit the previous two lines.
     context = {
         "object_list": qs
     }
