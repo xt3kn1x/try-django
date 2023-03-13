@@ -38,6 +38,8 @@ def article_create_view(request):
         # article_object = Article.objects.create(title=title, content=content)
         # context['object'] = article_object
         # context['created'] = True
+    if request.htmx:
+        return render(request, "articles/partials/forms.html", context)
     return render(request, 'articles/create.html', context=context)
     # form = ArticleForm()
     # print(dir(form))

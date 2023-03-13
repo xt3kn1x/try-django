@@ -6,7 +6,7 @@
 
 
         <div style="margin-top:30px;">
-            <form action='.' method="POST">
+            <form action='.' method="POST" hx-post='.' hx-swap="outerHTML">
                 {% csrf_token %}
 
                 {{ form.as_p }}
